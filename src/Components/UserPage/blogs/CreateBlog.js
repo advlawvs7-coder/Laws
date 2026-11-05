@@ -40,19 +40,19 @@ const CreateBlogs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const toast = useToast();
-  const CLOUDINARY_UPLOAD_PRESET = "unsigned_preset"; // your created preset in cloudinary
-  const CLOUDINARY_CLOUD_NAME = "dwikskvzt"; // Your Cloudinary cloud name
+  const CLOUDINARY_UPLOAD_PRESET = "lawvs_img"; // your created preset in cloudinary
+  const CLOUDINARY_CLOUD_NAME = "dhx6zek29"; // Your Cloudinary cloud name
   const uploadImageToCloudinary = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    // formData.append("cloud_name", "dwikskvzt"); // 🔁 Replace with your Cloudinary cloud name
+    // formData.append("cloud_name", "dhx6zek29"); // 🔁 Replace with your Cloudinary cloud name
     // formData.append("blogsImage_set", CLOUDINARY_UPLOAD_PRESET);
     formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
     formData.append("folder", "lawvs/blogs");
 
     const res = await axios.post(
       `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-      formData
+      formData,
     );
     return res.data.secure_url;
   };

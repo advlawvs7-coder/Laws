@@ -85,7 +85,7 @@ const Footer = () => {
             Pages
           </Text>
 
-          <ChakraLink as={RouterLink} to="/about">
+          <ChakraLink as={RouterLink} to="/about-us">
             About Us
           </ChakraLink>
           <ChakraLink as={RouterLink} to="/all-articles">

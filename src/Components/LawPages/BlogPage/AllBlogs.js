@@ -72,19 +72,41 @@ export default function AllBlogs() {
   const indexOfFirst = indexOfLast - blogsPerPage;
   const currentBlogs = filterBlogs.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(filterBlogs.length / blogsPerPage);
+
   const handleCreateBlog = () => {
-    if (!JSON.parse(localStorage.getItem("lawvsuserinfo"))) {
+    try {
+      const user = localStorage.getItem("lawvsuserinfo");
+      const parsedUser = user ? JSON.parse(user) : null;
+
+      if (!parsedUser) {
+        toast({
+          title: "Please log in to create an Blogs",
+          status: "warning",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+
+        // Navigate after small delay for toast visibility
+        setTimeout(() => navigate("/user-auth-login"), 500);
+        return;
+      }
+
+      // Redirect to create article page
+      navigate("/create-blog");
+    } catch (error) {
+      console.error("Error checking login:", error);
       toast({
-        title: "Please log in to create an article",
-        status: "warning",
+        title: "Something went wrong, please log in again",
+        status: "error",
         duration: 3000,
         isClosable: true,
         position: "top",
       });
-      return;
+      navigate("/user-auth-login");
     }
-    navigate("/create-blog"); // Redirect to create article page
   };
+
   return (
     <>
       <Header />

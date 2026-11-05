@@ -47,18 +47,18 @@ const UpdateNews = () => {
 
   const toast = useToast();
 
-  const CLOUDINARY_UPLOAD_PRESET = "unsigned_preset";
-  const CLOUDINARY_CLOUD_NAME = "dwikskvzt";
+  const CLOUDINARY_UPLOAD_PRESET = "lawvs_img";
+  const CLOUDINARY_CLOUD_NAME = "dhx6zek29";
 
   const uploadImageToCloudinary = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-    formData.append("folder", "lawvs/blogs");
+    formData.append("folder", "lawvs/news");
 
     const res = await axios.post(
       `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-      formData
+      formData,
     );
     return res.data.secure_url;
   };

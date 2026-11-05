@@ -19,6 +19,7 @@ import * as mod from "../../../url";
 import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import ShareSidebar from "../../../utils/ShareSidebar";
+import LAWVSLoader from "../../../utils/Loders";
 
 export default function SingleArticle() {
   const [article, setArticle] = useState(null);
@@ -70,18 +71,24 @@ export default function SingleArticle() {
   };
 
   useEffect(() => {
-    if (!slug) return; // prevent API call without slug
+    if (!slug) return;
+
     setLoading(true);
-    getArticleBySlug(slug).then(() => setLoading(false));
-    getLatestArticles();
+    const startTime = Date.now();
+
+    Promise.all([getArticleBySlug(slug), getLatestArticles()]).finally(() => {
+      const endTime = Date.now();
+      const elapsed = endTime - startTime;
+      const remaining = Math.max(1000 - elapsed, 0); // 1000ms = 1s
+
+      setTimeout(() => {
+        setLoading(false);
+      }, remaining);
+    });
   }, [slug]);
 
   if (loading) {
-    return (
-      <Box textAlign="center" py={20}>
-        <Spinner size="xl" />
-      </Box>
-    );
+    return <LAWVSLoader />;
   }
 
   if (!article) {

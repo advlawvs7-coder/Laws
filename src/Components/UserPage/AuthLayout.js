@@ -7,33 +7,34 @@ import Footer from "../Navbar/Footer";
 const AuthLayout = ({ left, right }) => {
   return (
     <>
-    <Header />
-    <Flex
-      direction={{ base: "column", md: "row" }}
-      maxW="4xl"
-      mx="auto"
-      p={4}
-      bg="white"
-      boxShadow="md"
-      rounded="md"
-      overflow="hidden"
-    >
-      <Box flex="1" p={8}>
-        {left}
-      </Box>
+      <Header />
+      <Flex
+        direction={{ base: "column", md: "row" }}
+        maxW="4xl"
+        mx="auto"
+        p={4}
+        bg="white"
+        boxShadow="xl"
+        rounded="md"
+        overflow="hidden"
+        mt="20px"
+      >
+        <Box flex="1" p={8}>
+          {left}
+        </Box>
 
-      {/* Vertical divider for desktop */}
-      <Divider
-        orientation="vertical"
-        borderColor="gray.200"
-        display={{ base: "none", md: "block" }}
-      />
+        {/* Vertical divider for desktop */}
+        <Divider
+          orientation="vertical"
+          borderColor="gray.200"
+          display={{ base: "none", md: "block" }}
+        />
 
-      <Box flex="1" p={8} bg="gray.50">
-        {right}
-      </Box>
-    </Flex>
-    <Footer />
+        <Box flex="1" p={8} bg="gray.50">
+          {right}
+        </Box>
+      </Flex>
+      <Footer />
     </>
   );
 };

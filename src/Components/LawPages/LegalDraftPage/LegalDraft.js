@@ -14,44 +14,14 @@ import {
 import DraftsGrid from "./DraftsGrid";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
+import HomeBannerUser from "../../FrontPage/HomeBanner";
 export const LegalDraft = () => {
   return (
     <>
       <Header />
       <Box>
-        {/* Top Banner Section */}
-        <Box
-          bgGradient="linear(to-r, gray.50, gray.100)"
-          py={{ base: 10, md: 15 }}
-          textAlign="center"
-        >
-          <Heading as="h1" size="2xl" m={1}>
-            Legal Drafts
-          </Heading>
-          <Text fontSize="2xl" color="orange.600" fontWeight="bold">
-            Read Legal Drafts
-          </Text>
-
-          <Breadcrumb
-            separator="/"
-            fontWeight="medium"
-            color="gray.600"
-            justifyContent="center"
-            mt={4}
-          >
-            <BreadcrumbItem>
-              {/* <BreadcrumbLink to="/">Home</BreadcrumbLink> */}
-              <ChakraLink as={RouterLink} to="/">
-                home
-              </ChakraLink>
-            </BreadcrumbItem>
-            <BreadcrumbItem isCurrentPage>
-              <BreadcrumbLink to="#">Drafts</BreadcrumbLink>
-            </BreadcrumbItem>
-          </Breadcrumb>
-        </Box>
+        <HomeBannerUser />
         <DraftsGrid />
-
         {/* Content Section */}
         <Container maxW="7xl" py={1}>
           <Stack spacing={6}>

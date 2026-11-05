@@ -8,17 +8,27 @@ import {
   Stack,
   Container,
 } from "@chakra-ui/react";
+const imge = require("../Assets/lawsImage/librarywebinar.jpg");
 
 export default function LibraryWebinarPage() {
   return (
-    <Container maxW="6xl" py={12}>
-      <Flex
+    <Container py={12} maxW="container.xl">
+      <Image
+        src={imge}
+        alt="Lady Justice"
+        w="100%" // full width of container
+        h={{ base: "40vh", md: "60vh" }} // responsive height
+        objectFit="cover" // maintain aspect ratio and cover container
+        borderRadius="md" // optional rounded corners
+      />
+      {/* </Container> */}
+
+      {/* <Flex
         direction={{ base: "column", md: "row" }}
         align="center"
         justify="space-between"
         gap={8}
       >
-        {/* Left - Library Card */}
         <Box
           bg="gray.900"
           color="white"
@@ -43,7 +53,6 @@ export default function LibraryWebinarPage() {
           />
         </Box>
 
-        {/* Center - QR Code */}
         <Box flexShrink={0}>
           <Image
             src="/images/qr-code.png"
@@ -53,7 +62,6 @@ export default function LibraryWebinarPage() {
           />
         </Box>
 
-        {/* Right - Webinar Card */}
         <Box
           bg="gray.900"
           color="white"
@@ -78,7 +86,7 @@ export default function LibraryWebinarPage() {
             w="120px"
           />
         </Box>
-      </Flex>
+      </Flex> */}
     </Container>
   );
 }

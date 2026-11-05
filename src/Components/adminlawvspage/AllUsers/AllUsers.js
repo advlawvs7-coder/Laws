@@ -27,9 +27,11 @@ const AllUsers = () => {
   const adminId = parsedUserInfo?.data?.id;
   const token = parsedUserInfo?.token;
   const SIDEBAR_WIDTH = "250px";
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const limit = 10; // per page users
 
-  const fetchUsers = async () => {
-    // console.log("Retrieved token:", token);
+  const fetchUsers = async (currentPage = 1) => {
     try {
       const config = {
         headers: {
@@ -38,14 +40,17 @@ const AllUsers = () => {
       };
 
       const { data } = await axios.get(
-        `${mod.api_url}/api/v1/user/get_all_users`,
-        config
+        `${mod.api_url}/api/v1/user/get_all_users?page=${currentPage}&limit=${limit}`,
+        config,
       );
+
       setUsers(data?.users);
+      setTotalPages(data?.totalPages || 1); // backend se totalPages aana chahiye
+      setPage(currentPage);
     } catch (error) {
       console.error(
         "Error fetching users:",
-        error.response?.data || error.message
+        error.response?.data || error.message,
       );
       toast({
         title: "Error fetching users.",
@@ -58,8 +63,8 @@ const AllUsers = () => {
   };
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchUsers(page);
+  }, [page]);
 
   const blockUser = async (_id) => {
     confirmAlert({
@@ -79,14 +84,14 @@ const AllUsers = () => {
               await axios.put(
                 `${mod.api_url}/api/auth/user/user/${_id}/block`,
                 {},
-                config
+                config,
               );
 
               // Update the users state
               setUsers((prevUsers) =>
                 prevUsers.map((user) =>
-                  user._id === _id ? { ...user, blocked: true } : user
-                )
+                  user._id === _id ? { ...user, blocked: true } : user,
+                ),
               );
 
               // Display success toast notification
@@ -136,12 +141,12 @@ const AllUsers = () => {
               const response = await axios.put(
                 `${mod.api_url}/api/auth/user/user/${_id}/unblock`,
                 {},
-                config
+                config,
               );
               setUsers((prevUsers) =>
                 prevUsers.map((user) =>
-                  user._id === _id ? { ...user, blocked: false } : user
-                )
+                  user._id === _id ? { ...user, blocked: false } : user,
+                ),
               );
               toast({
                 title: `User unblocked successfully.`,
@@ -244,6 +249,40 @@ const AllUsers = () => {
             </GridItem>
           ))}
         </Grid>
+        {totalPages > 1 && (
+          <Flex justify="center" mt={8} gap={2} wrap="wrap">
+            <Button
+              size="sm"
+              onClick={() => setPage((prev) => prev - 1)}
+              isDisabled={page === 1}
+            >
+              Prev
+            </Button>
+
+            {Array.from({ length: totalPages }, (_, i) => (
+              <Button
+                key={i}
+                size="sm"
+                bg={page === i + 1 ? "#720e04" : "gray.200"}
+                color={page === i + 1 ? "white" : "black"}
+                _hover={{
+                  bg: page === i + 1 ? "#720e04" : "gray.300",
+                }}
+                onClick={() => setPage(i + 1)}
+              >
+                {i + 1}
+              </Button>
+            ))}
+
+            <Button
+              size="sm"
+              onClick={() => setPage((prev) => prev + 1)}
+              isDisabled={page === totalPages}
+            >
+              Next
+            </Button>
+          </Flex>
+        )}
       </Box>
     </>
   );

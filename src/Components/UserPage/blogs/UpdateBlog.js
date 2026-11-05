@@ -46,8 +46,8 @@ const UpdateBlogs = () => {
 
   const toast = useToast();
 
-  const CLOUDINARY_UPLOAD_PRESET = "unsigned_preset";
-  const CLOUDINARY_CLOUD_NAME = "dwikskvzt";
+  const CLOUDINARY_UPLOAD_PRESET = "lawvs_img";
+  const CLOUDINARY_CLOUD_NAME = "dhx6zek29";
 
   const uploadImageToCloudinary = async (file) => {
     const formData = new FormData();

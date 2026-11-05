@@ -111,171 +111,122 @@ const JobsMenu = () => {
     </Box>
   );
 };
-// ─── knowledge menu ──────────────────────────────────────────────
-const Knowledgemenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+// ─── knowledge menu ────────────────────────────────────────────
 
-  return (
-    <Box
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-    >
-      <Menu isOpen={isOpen}>
-        <MenuButton
-          as={Button}
-          rightIcon={<ChevronDownIcon />}
-          variant="ghost"
-          _hover={{ bg: "gray.100" }}
-          _expanded={{ bg: "gray.200" }}
-        >
-          Search Jobs
-        </MenuButton>
-        <MenuList>
-          <MenuItem>
-            <ChakraLink as={RouterLink} to="/legal-draft">
-              Legal Drafts
-            </ChakraLink>
-          </MenuItem>
-          <MenuItem>
-            <ChakraLink as={RouterLink} to="/videos-news">
-              Videos
-            </ChakraLink>
-          </MenuItem>
-          <MenuItem>
-            <ChakraLink as={RouterLink} to="/all-articles">
-              Articles
-            </ChakraLink>
-          </MenuItem>
-          <MenuItem>
-            <ChakraLink as={RouterLink} to="/all-blogs">
-              Blogs
-            </ChakraLink>
-          </MenuItem>
-          <MenuItem>
-            <ChakraLink as={RouterLink} to="/all-news">
-              News
-            </ChakraLink>
-          </MenuItem>
-        </MenuList>
-      </Menu>
-    </Box>
-  );
-};
+// const MootCourtMenu = () => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
-const MootCourtMenu = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+//   // Dynamically adjust submenu position based on screen size
+//   const isMobile = useBreakpointValue({ base: true, md: false });
 
-  // Dynamically adjust submenu position based on screen size
-  const isMobile = useBreakpointValue({ base: true, md: false });
+//   return (
+//     <Box
+//       onMouseEnter={() => setIsMenuOpen(true)}
+//       onMouseLeave={() => {
+//         setIsMenuOpen(false);
+//         setIsSubmenuOpen(false);
+//       }}
+//     >
+//       <Menu isOpen={isMenuOpen}>
+//         <MenuButton
+//           as={Button}
+//           rightIcon={<ChevronDownIcon />}
+//           variant="ghost"
+//           _hover={{ bg: "gray.100" }}
+//           _expanded={{ bg: "gray.200" }}
+//         >
+//           Moot Court
+//         </MenuButton>
 
-  return (
-    <Box
-      onMouseEnter={() => setIsMenuOpen(true)}
-      onMouseLeave={() => {
-        setIsMenuOpen(false);
-        setIsSubmenuOpen(false);
-      }}
-    >
-      <Menu isOpen={isMenuOpen}>
-        <MenuButton
-          as={Button}
-          rightIcon={<ChevronDownIcon />}
-          variant="ghost"
-          _hover={{ bg: "gray.100" }}
-          _expanded={{ bg: "gray.200" }}
-        >
-          Moot Court
-        </MenuButton>
+//         <MenuList>
+//           {/* Submenu */}
+//           <Box
+//             position="relative"
+//             onMouseEnter={() => setIsSubmenuOpen(true)}
+//             onMouseLeave={() => setIsSubmenuOpen(false)}
+//           >
+//             <MenuItem>
+//               INSTRUCTIONS FOR PARTICIPANTS
+//               <ChevronRightIcon ml="auto" />
+//             </MenuItem>
 
-        <MenuList>
-          {/* Submenu */}
-          <Box
-            position="relative"
-            onMouseEnter={() => setIsSubmenuOpen(true)}
-            onMouseLeave={() => setIsSubmenuOpen(false)}
-          >
-            <MenuItem>
-              INSTRUCTIONS FOR PARTICIPANTS
-              <ChevronRightIcon ml="auto" />
-            </MenuItem>
+//             {isSubmenuOpen && (
+//               <MenuList
+//                 position="absolute"
+//                 top={isMobile ? "100%" : "90%"}
+//                 left={isMobile ? "30%" : "80%"}
+//                 mt={isMobile ? "0" : "-1"}
+//                 zIndex="popover"
+//                 w="max-content"
+//               >
+//                 <MenuItem>
+//                   <ChakraLink as={RouterLink} to={"/moot-user-signup"}>
+//                     REGISTRATION FORM
+//                   </ChakraLink>
+//                 </MenuItem>
+//                 <MenuItem>
+//                   <ChakraLink as={RouterLink} to={"/rulesAnd_regulation"}>
+//                     RULES AND REGULATIONS OF COMPETITION
+//                   </ChakraLink>
+//                 </MenuItem>
 
-            {isSubmenuOpen && (
-              <MenuList
-                position="absolute"
-                top={isMobile ? "100%" : "90%"}
-                left={isMobile ? "30%" : "80%"}
-                mt={isMobile ? "0" : "-1"}
-                zIndex="popover"
-                w="max-content"
-              >
-                <MenuItem>
-                  <ChakraLink as={RouterLink} to={"/moot-user-signup"}>
-                    REGISTRATION FORM
-                  </ChakraLink>
-                </MenuItem>
-                <MenuItem>
-                  <ChakraLink as={RouterLink} to={"/rulesAnd_regulation"}>
-                    RULES AND REGULATIONS OF COMPETITION
-                  </ChakraLink>
-                </MenuItem>
+//                 <MenuItem>
+//                   <ChakraLink as={RouterLink} to={"/steps_to_register"}>
+//                     STEPS TO REGISTER
+//                   </ChakraLink>
+//                 </MenuItem>
+//                 <MenuItem>
+//                   <ChakraLink as={RouterLink} to={"/ask_que_for_team"}>
+//                     FAQ FOR TEAM
+//                   </ChakraLink>
+//                 </MenuItem>
+//                 <MenuItem>
+//                   <ChakraLink as={RouterLink} to={"/moot_map"}>
+//                     MOOT MAP
+//                   </ChakraLink>
+//                 </MenuItem>
+//               </MenuList>
+//             )}
+//           </Box>
+//           <MenuItem>
+//             <ChakraLink as={RouterLink} to={"/brochure_&_praposition"}>
+//               {" "}
+//               BROCHURE{" "}
+//             </ChakraLink>
+//           </MenuItem>
 
-                <MenuItem>
-                  <ChakraLink as={RouterLink} to={"/steps_to_register"}>
-                    STEPS TO REGISTER
-                  </ChakraLink>
-                </MenuItem>
-                <MenuItem>
-                  <ChakraLink as={RouterLink} to={"/ask_que_for_team"}>
-                    FAQ FOR TEAM
-                  </ChakraLink>
-                </MenuItem>
-                <MenuItem>
-                  <ChakraLink as={RouterLink} to={"/moot_map"}>
-                    MOOT MAP
-                  </ChakraLink>
-                </MenuItem>
-              </MenuList>
-            )}
-          </Box>
-          <MenuItem>
-            <ChakraLink as={RouterLink} to={"/brochure_&_praposition"}>
-              {" "}
-              BROCHURE{" "}
-            </ChakraLink>
-          </MenuItem>
+//           <MenuItem>
+//             <ChakraLink as={RouterLink} to={"/organiging_committee"}>
+//               ORGANIZING COMMITTEE
+//             </ChakraLink>
+//           </MenuItem>
 
-          <MenuItem>
-            <ChakraLink as={RouterLink} to={"/organiging_committee"}>
-              ORGANIZING COMMITTEE
-            </ChakraLink>
-          </MenuItem>
-
-          <MenuItem>
-            <ChakraLink as={RouterLink} to={"/information_for_Judges"}>
-              INFORMATION FOR JUDGES
-            </ChakraLink>
-          </MenuItem>
-          <MenuItem>
-            <ChakraLink as={RouterLink} to={"/askque_for_judges"}>
-              FAQ FOR JUDGES
-            </ChakraLink>
-          </MenuItem>
-        </MenuList>
-      </Menu>
-    </Box>
-  );
-};
+//           <MenuItem>
+//             <ChakraLink as={RouterLink} to={"/information_for_Judges"}>
+//               INFORMATION FOR JUDGES
+//             </ChakraLink>
+//           </MenuItem>
+//           <MenuItem>
+//             <ChakraLink as={RouterLink} to={"/askque_for_judges"}>
+//               FAQ FOR JUDGES
+//             </ChakraLink>
+//           </MenuItem>
+//         </MenuList>
+//       </Menu>
+//     </Box>
+//   );
+// };
 
 // ───--------------- TopHeader ─────────────────────────────────────────────
 const TopHeader = React.forwardRef((props, ref) => (
   <Box
     ref={ref}
     {...props} //  Pass props to avoid Chakra warnings
-    bg="#2E3338"
+    bg="#020202ff"
     color="white"
     px={{ base: 4, md: 8 }}
-    py={2}
+    py={1}
   >
     <Flex
       direction={{ base: "column", md: "row" }}
@@ -321,7 +272,7 @@ const TopHeader = React.forwardRef((props, ref) => (
               textDecoration="none"
               _hover={{ textDecoration: "none" }}
               size="sm"
-              bg="#D29B3F"
+              bg="#ecb24eff"
               color="white"
               borderRadius="full"
               padding={2}
@@ -335,7 +286,7 @@ const TopHeader = React.forwardRef((props, ref) => (
               textDecoration="none"
               _hover={{ textDecoration: "none" }}
               size="sm"
-              bg="#D29B3F"
+              bg="#f1b856ff"
               color="white"
               borderRadius="full"
               padding={2}
@@ -358,10 +309,10 @@ const TopHeader = React.forwardRef((props, ref) => (
           >
             <Circle
               size="32px"
-              bg="#D29B3F"
+              bg="#f7b037ff"
               borderRadius="full"
               color="black"
-              _hover={{ bg: "gray.700", color: "white" }}
+              _hover={{ bg: "blue.500", color: "green" }}
             >
               <Icon as={social.icon} color="white" boxSize={4} />
             </Circle>
@@ -380,8 +331,8 @@ const MainHeader = ({ isMobileNavOpen, toggleMobileNav }) => {
     <Box
       bg="white"
       px={{ base: 4, md: 8 }}
-      py={4}
-      boxShadow="sm"
+      py={1}
+      boxShadow="2xl"
       position="sticky"
       top="0"
       zIndex="999"
@@ -393,7 +344,7 @@ const MainHeader = ({ isMobileNavOpen, toggleMobileNav }) => {
             <Image
               src={logo}
               alt="Logo"
-              height="70px"
+              height="80px"
               width="200px"
               objectFit="contain"
               m={0}
@@ -404,13 +355,33 @@ const MainHeader = ({ isMobileNavOpen, toggleMobileNav }) => {
 
         {/* Navigation */}
         {isMobile ? (
-          <IconButton
-            icon={<FaBars />}
-            onClick={toggleMobileNav}
-            variant="ghost"
-            fontSize="20px"
-            aria-label="Toggle Navigation"
-          />
+          <>
+            <IconButton
+              icon={<FaBars />}
+              onClick={toggleMobileNav}
+              variant="ghost"
+              fontSize="20px"
+              aria-label="Toggle Navigation"
+            />
+            {!userId ? (
+              <ChakraLink
+                as={RouterLink}
+                to="/user-auth-login"
+                textDecoration="none"
+                _hover={{ textDecoration: "none" }}
+                size="sm"
+                bg="#ecb24eff"
+                color="white"
+                borderRadius="full"
+                padding={2}
+                px={6}
+              >
+                Login/Register
+              </ChakraLink>
+            ) : (
+              <DashHeader />
+            )}
+          </>
         ) : (
           <HStack
             spacing={6}
@@ -419,9 +390,10 @@ const MainHeader = ({ isMobileNavOpen, toggleMobileNav }) => {
             color="gray.700"
             as="nav"
           >
-            <MootCourtMenu />
-            {/* <JobsMenu /> */}
+            {/* <MootCourtMenu /> */}
+            <JobsMenu />
             <KnowladgeMenu />
+            
 
             <ChakraLink as={RouterLink} to="/legal-draft">
               Legal Drafts
@@ -429,7 +401,7 @@ const MainHeader = ({ isMobileNavOpen, toggleMobileNav }) => {
             <ChakraLink as={RouterLink} to="/videos-news">
               Videos
             </ChakraLink>
-            {/* <ChakraLink as={RouterLink} to="/all-articles">
+            <ChakraLink as={RouterLink} to="/all-articles">
               Articles
             </ChakraLink>
             <ChakraLink as={RouterLink} to="/all-blogs">
@@ -437,11 +409,10 @@ const MainHeader = ({ isMobileNavOpen, toggleMobileNav }) => {
             </ChakraLink>
             <ChakraLink as={RouterLink} to="/all-news">
               News
-            </ChakraLink> */}
+            </ChakraLink>
             <ChakraLink as={RouterLink} to="/q-and-a">
               Q & A
             </ChakraLink>
-            <DashHeader />
           </HStack>
         )}
       </Flex>
@@ -482,7 +453,7 @@ const MainHeader = ({ isMobileNavOpen, toggleMobileNav }) => {
               color="gray.700"
               pt={4}
             >
-              <MootCourtMenu />
+              {/* <MootCourtMenu /> */}
               <JobsMenu />
               <ChakraLink
                 as={RouterLink}
@@ -580,7 +551,7 @@ const Header = () => {
         toggleMobileNav={toggleMobileNav}
       />
 
-      <MobileFooterNav />
+      <MobileFooterNav /> 
     </>
   );
 };

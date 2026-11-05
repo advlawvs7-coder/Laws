@@ -95,8 +95,8 @@ export const CvUpload = () => {
         {user?.resumeUrl ? (
           <Button
             as="a"
-            href={user?.resumeUrl}
-            target="_blank"
+            href={`${mod.api_url}${user.resumeUrl}`}
+            // target="_blank"
             colorScheme="teal"
             mt={2}
           >

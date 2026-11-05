@@ -144,7 +144,7 @@ export default function SingleDraft() {
           <Box
             bg="white"
             style={{
-              // fontFamily: "serif",
+              fontFamily: "serif",
               fontSize: "20pt",
               lineHeight: "1.8",
               whiteSpace: "pre-wrap",

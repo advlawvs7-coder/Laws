@@ -27,14 +27,19 @@ export default function AllArticles() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const articlesPerPage = 8; // ✅ change as needed
   const toast = useToast();
   const navigate = useNavigate();
   const getActiveArticles = async () => {
+    setLoading(true);
+    const startTime = Date.now();
+
     try {
       const { data } = await axios.get(
         `${mod.api_url}/api/v1/article/get_active_articles`
       );
+
       if (data?.Articles?.length === 0) {
         toast({
           title: "No Article found",
@@ -44,8 +49,9 @@ export default function AllArticles() {
           position: "top",
         });
       }
+
       setArticles(data?.Articles || []);
-      setFilteredArticles(data?.Articles || []); // initialize
+      setFilteredArticles(data?.Articles || []);
     } catch (error) {
       toast({
         title: "Error fetching stories",
@@ -54,6 +60,10 @@ export default function AllArticles() {
         isClosable: true,
         position: "top",
       });
+    } finally {
+      const elapsed = Date.now() - startTime;
+      const remaining = Math.max(1000 - elapsed, 0); // ensure at least 1s loader
+      setTimeout(() => setLoading(false), remaining);
     }
   };
 
@@ -76,18 +86,39 @@ export default function AllArticles() {
   const currentArticles = filteredArticles.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
   const handleCreateArticle = () => {
-    if (!JSON.parse(localStorage.getItem("lawvsuserinfo"))) {
+    try {
+      const user = localStorage.getItem("lawvsuserinfo");
+      const parsedUser = user ? JSON.parse(user) : null;
+
+      if (!parsedUser) {
+        toast({
+          title: "Please log in to create an article",
+          status: "warning",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+
+        // Navigate after small delay for toast visibility
+        setTimeout(() => navigate("/user-auth-login"), 500);
+        return;
+      }
+
+      // Redirect to create article page
+      navigate("/create-article");
+    } catch (error) {
+      console.error("Error checking login:", error);
       toast({
-        title: "Please log in to create an article",
-        status: "warning",
+        title: "Something went wrong, please log in again",
+        status: "error",
         duration: 3000,
         isClosable: true,
         position: "top",
       });
-      return;
+      navigate("/user-auth-login");
     }
-    navigate("/create-article"); // Redirect to create article page
   };
+
   return (
     <>
       <Header />

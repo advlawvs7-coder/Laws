@@ -18,13 +18,13 @@ import axios from "axios";
 import * as mod from "../../url";
 import Header from "../Navbar/Header";
 import Footer from "../Navbar/Footer";
+const meetimg = require("../Assets/lawsImage/meet.jpg");
 
 const MeetUserForm = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
     mobile: "",
-
     comments: "",
   });
 
@@ -69,18 +69,29 @@ const MeetUserForm = () => {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        // bgGradient="linear(to-br, yellow.400, blue.500, red.400, purple.500)"
-        // background={"gray.200"}
+        bgImage={`url(${meetimg})`} // replace with your actual image path
+        bgSize="cover"
+        bgPosition="center"
+        bgRepeat="no-repeat"
         p={0}
-        mb={{ base: "80px", md: "0" }}
+        // mb={{ base: "0px", md: "0" }}
       >
         <Card
           w={{ base: "100%", md: "450px" }}
           shadow="xl"
           borderRadius="2xl"
-          background={"yellow.100"}
+          background={"gray.100"}
         >
-          <CardHeader textAlign="center">
+          <CardHeader
+            textAlign="center"
+            // textAlign="center"
+            // mb={6}
+            bg="yellow.400"
+            // py={3}
+            // borderRadius="md"
+            color="white"
+            boxShadow="md"
+          >
             <Heading fontSize="2xl" color="teal.600">
               Meeting form
             </Heading>

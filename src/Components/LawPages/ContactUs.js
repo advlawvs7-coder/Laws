@@ -20,11 +20,13 @@ import Header from "../Navbar/Header";
 import MapPage from "./Map";
 import { useState } from "react";
 import axios from "axios";
+import * as mod from "./../../url";
+
 const ContactUs = () => {
   const toast = useToast();
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
+    mobile: "",
     email: "",
     message: "",
   });
@@ -34,11 +36,13 @@ const ContactUs = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://yourapi.com/api/contact", formData);
+      const res = await axios.post(
+        `${mod.api_url}/api/v1/contactus/add/contact`,
+        formData,
+      );
 
       toast({
         title: "Query submitted successfully!",
@@ -48,11 +52,11 @@ const ContactUs = () => {
         isClosable: true,
       });
 
-      setFormData({ name: "", phone: "", email: "", message: "" });
+      setFormData({ name: "", mobile: "", email: "", message: "" });
     } catch (err) {
       toast({
-        title: "Submission failed",
-        description: "Something went wrong. Please try again.",
+        title: `Error: ${err.response?.data?.message || "Submission failed"}`,
+        description: `${err.response?.data?.error || ""}`,
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -150,9 +154,9 @@ const ContactUs = () => {
               <FormControl isRequired>
                 <FormLabel>Phone:</FormLabel>
                 <Input
-                  name="phone"
+                  name="mobile"
                   placeholder="Phone Number"
-                  value={formData.phone}
+                  value={formData.mobile}
                   onChange={handleChange}
                 />
               </FormControl>
@@ -220,7 +224,7 @@ const ContactUs = () => {
                 <Heading size="md" color="#D29B3F">
                   Contacts
                 </Heading>
-                <Text>{contact.phone}</Text>
+                <Text>{contact.mobile}</Text>
                 <Text>{contact.email}</Text>
               </VStack>
             </Box>
@@ -236,18 +240,18 @@ const contacts = [
   {
     address:
       "Delhi office: Office No.105, Himland House, Commercial Complex Karampura, Delhi - 110015",
-    phone: "+91 81719 74067",
+    mobile: "+91 81719 74067",
     email: "hr@lawvs.com",
   },
   {
     address:
       "AT 8, Marina View, Level 42, Asia Square Tower 1, Suite No: 42030, Singapore",
-    phone: "+91 81719 74067",
+    mobile: "+91 81719 74067",
     email: "hr@lawvs.com",
   },
   {
     address: "6263, Ali Chamber, Nagindas Master Road Fort, Mumbai - 400023",
-    phone: "+91 (22) 22641653",
+    mobile: "+91 (22) 22641653",
     email: "hr@lawvs.com",
   },
 ];

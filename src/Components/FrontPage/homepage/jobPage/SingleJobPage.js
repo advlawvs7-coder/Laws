@@ -38,6 +38,7 @@ import {
   LinkedinIcon,
   WhatsappIcon,
 } from "react-share";
+import LAWVSLoader from "../../../../utils/Loders";
 // import { CiLocationOn } from "react-icons/ci";
 
 export const SingleJobPage = () => {
@@ -161,13 +162,6 @@ export const SingleJobPage = () => {
       });
     }
   };
-  if (loading) {
-    return (
-      <Flex justify="center" align="center" minH="80vh">
-        <Spinnernew size="xl" color="yellow.500" />
-      </Flex>
-    );
-  }
 
   if (!job) {
     return (
@@ -177,6 +171,9 @@ export const SingleJobPage = () => {
         </Text>
       </Flex>
     );
+  }
+  if (loading) {
+    return <LAWVSLoader />;
   }
   return (
     <>

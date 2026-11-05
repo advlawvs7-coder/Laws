@@ -24,6 +24,7 @@ import * as mod from "../../../url";
 import Header from "../../Navbar/Header";
 import { MdInsertComment } from "react-icons/md";
 import { GiFrayedArrow } from "react-icons/gi";
+import LAWVSLoader from "../../../utils/Loders";
 const userInfo = JSON.parse(localStorage.getItem("lawvsuserinfo"));
 export const QAndA = () => {
   const [categories, setCategories] = useState([]);
@@ -264,11 +265,7 @@ export const QAndA = () => {
   // if current user is inclued in answers likes array then he already liked
 
   if (loading) {
-    return (
-      <Flex justify="center" align="center" minH="50vh">
-        <Spinner size="xl" />
-      </Flex>
-    );
+    return <LAWVSLoader />;
   }
 
   return (

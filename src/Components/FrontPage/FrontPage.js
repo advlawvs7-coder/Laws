@@ -9,33 +9,35 @@ import JoinRevolutionSection from "./JoinRevolutionSection";
 import LatestJob from "./LatestJob";
 import LibraryWebinarPage from "./LibraryWebinarPage";
 import Opportunities from "./Opportunities";
-import StudentCard from "./StudentCard";
 import TestimonialPage from "./TestimonialCard";
 import TopArticles from "./TopArticles";
 import TopCompanies from "./TopCompanies";
-import TopStories from "./TopStories";
+import TopStories from "./TopBlogs";
 import LegalBanner from "./LegalBanner";
 import JobPage from "./homepage/jobPage/Jobpage";
 import NewsletterSubscribe from "../footerpage/NewsletterSubscribe";
+import ScrollPopupForm from "../../utils/PopupForm";
+import LatestVideo from "./Video";
+import HomeBannerUser from "./HomeBanner";
 
 const FrontPage = () => {
   return (
     <>
       <Header />
-      <LegalBanner />
+      <ScrollPopupForm />
+      <HomeBannerUser />
+      {/* <LegalBanner /> */}
       <JobPage />
       <AuthorSlider />
-      <LatestJob />
-      <Internship />
+      <LatestVideo />
       <InternshipBanner />
       <TopStories />
       <TopArticles />
       <Opportunities />
       <TopCompanies />
       <CareerHighlight />
-      {/* <StudentCard /> */}
       <JoinRevolutionSection />
-      <TestimonialPage />
+      {/* <TestimonialPage /> */}
       <LibraryWebinarPage />
       <NewsletterSubscribe />
       <Footer />

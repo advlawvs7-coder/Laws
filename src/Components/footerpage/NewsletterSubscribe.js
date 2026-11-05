@@ -101,7 +101,7 @@ const NewsletterSubscribe = () => {
   };
 
   return (
-    <VStack spacing={6} w="100%" py={6}>
+    <VStack spacing={6} w="100%" py={6} backgroundColor={"blue.50"}>
       <Box
         border="1px solid #e0e0e0"
         borderRadius="md"

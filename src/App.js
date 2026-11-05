@@ -74,6 +74,8 @@ import LegalLawProgram from "./Components/footerpage/LegalLawPrograms.js";
 import LegalLawJobs from "./Components/footerpage/LegalLawJobs.js";
 import LawInternShip from "./Components/footerpage/LawInternship.js";
 import MeetUserForm from "./Components/contactpage/MeetUser.js";
+import { Aboutus } from "./Components/footerpage/Aboutus.js";
+import { OrderList } from "./Components/UserPage/OrderList.js";
 
 function App() {
   return (
@@ -83,12 +85,15 @@ function App() {
           <ScrollToTop />
           <Routes>
             <>
+              {/* <Route path="/" element={<LegalDraft />} /> */}
               <Route path="/" element={<FrontPage />} />
               <Route path="/join-meeting-form" element={<MeetUserForm />} />
               <Route path="/update-job/:id" element={<UpdateJob />} />
               <Route path="/all-application" element={<UserApplications />} />
               <Route path="/all-users" element={<AllUsers />} />
               <Route path="/contact" element={<ContactUs />} />
+              <Route path="/about-us" element={<Aboutus />} />
+
               <Route path="/create-job" element={<CreateJob />} />
               <Route path="/manage-job" element={<ManageJob />} />
               <Route path="/admin-profile" element={<Profile />} />
@@ -166,6 +171,14 @@ function App() {
                 <ProtectedRoute allowedRoles={["user"]}>
                   <UserDashBoard />
                 </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/user-auth-my-drafts"
+              element={
+                // <ProtectedRoute allowedRoles={["user"]}>
+                <OrderList />
+                // </ProtectedRoute>
               }
             />
             <Route
